@@ -1,0 +1,66 @@
+<idea-plugin>
+  <id>com.pichincha.devpulse</id>
+  <name>DevPulse BP</name>
+  <vendor email="devpulse@pichincha.com" url="https://pichincha.com">Banco Pichincha</vendor>
+
+  <description><![CDATA[
+    <h1>DevPulse BP - Developer Communication Hub</h1>
+    <p>
+      Plugin unificado para comunicación técnica directa con desarrolladores.
+      Recibe píldoras informativas, lineamientos, documentación y alertas críticas
+      directamente en tu IDE.
+    </p>
+    <h2>Características</h2>
+    <ul>
+      <li>Notificaciones push en tiempo real</li>
+      <li>Centro de mensajes con histórico</li>
+      <li>Múltiples tipos de contenido: Info, Lineamientos, Documentación, Alertas</li>
+      <li>Telemetría de instalación y lectura</li>
+      <li>Actualizaciones automáticas</li>
+    </ul>
+  ]]></description>
+
+  <change-notes><![CDATA[
+    <h2>Version 1.0.0</h2>
+    <ul>
+      <li>Versión inicial MVP</li>
+      <li>Sistema de notificaciones</li>
+      <li>Centro de mensajes</li>
+      <li>Soporte para mensajes mock</li>
+    </ul>
+  ]]></change-notes>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="DevPulse" 
+                secondary="true" 
+                icon="/icons/toolWindowIcon.svg" 
+                anchor="right" 
+                factoryClass="com.pichincha.devpulse.ui.DevPulseToolWindowFactory"/>
+    
+    <notificationGroup id="DevPulse Notifications" displayType="BALLOON"/>
+    
+    <applicationService serviceImplementation="com.pichincha.devpulse.service.MessageService"/>
+    <applicationService serviceImplementation="com.pichincha.devpulse.service.NotificationService"/>
+    <applicationService serviceImplementation="com.pichincha.devpulse.service.TelemetryService"/>
+    <applicationService serviceImplementation="com.pichincha.devpulse.settings.DevPulseSettings"/>
+  </extensions>
+
+  <!--
+  <applicationListeners>
+    <listener class="com.pichincha.devpulse.listeners.DevPulseStartupListener"
+              topic="com.intellij.ide.AppLifecycleListener"/>
+  </applicationListeners>
+  -->
+
+  <actions>
+    <action id="DevPulse.RefreshMessages" 
+            class="com.pichincha.devpulse.actions.RefreshMessagesAction" 
+            text="Refresh Messages" 
+            description="Refresh messages from server"
+            icon="AllIcons.Actions.Refresh">
+      <add-to-group group-id="ToolbarRunGroup" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

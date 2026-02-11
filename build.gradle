@@ -1,0 +1,52 @@
+plugins {
+  id 'java'
+  id 'org.jetbrains.intellij' version '1.17.4'
+}
+
+group = 'com.pichincha.devpulse'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+  maven { 
+    url 'https://www.jetbrains.com/intellij-repository/releases'
+    allowInsecureProtocol = false
+  }
+  maven { 
+    url 'https://www.jetbrains.com/intellij-repository/snapshots'
+    allowInsecureProtocol = false
+  }
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
+intellij {
+  version = '2023.1.5'
+  type = 'IC'
+  plugins = []
+  downloadSources = false
+}
+
+dependencies {
+  implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+tasks {
+  patchPluginXml {
+    sinceBuild = '231'
+    untilBuild = '241.*'
+  }
+
+  signPlugin {
+    certificateChain = System.getenv("CERTIFICATE_CHAIN")
+    privateKey = System.getenv("PRIVATE_KEY")
+    password = System.getenv("PRIVATE_KEY_PASSWORD")
+  }
+
+  publishPlugin {
+    token = System.getenv("PUBLISH_TOKEN")
+  }
+}
