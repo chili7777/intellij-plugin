@@ -33,31 +33,29 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <toolWindow id="DevPulse" 
-                secondary="true" 
-                icon="/icons/toolWindowIcon.svg" 
-                anchor="right" 
+    <toolWindow id="DevPulse"
+                secondary="true"
+                icon="/icons/toolWindowIcon.svg"
+                anchor="right"
                 factoryClass="com.pichincha.devpulse.ui.DevPulseToolWindowFactory"/>
-    
+
     <notificationGroup id="DevPulse Notifications" displayType="BALLOON"/>
-    
+
     <applicationService serviceImplementation="com.pichincha.devpulse.service.MessageService"/>
     <applicationService serviceImplementation="com.pichincha.devpulse.service.NotificationService"/>
     <applicationService serviceImplementation="com.pichincha.devpulse.service.TelemetryService"/>
     <applicationService serviceImplementation="com.pichincha.devpulse.settings.DevPulseSettings"/>
   </extensions>
 
-  <!--
   <applicationListeners>
     <listener class="com.pichincha.devpulse.listeners.DevPulseStartupListener"
               topic="com.intellij.ide.AppLifecycleListener"/>
   </applicationListeners>
-  -->
 
   <actions>
-    <action id="DevPulse.RefreshMessages" 
-            class="com.pichincha.devpulse.actions.RefreshMessagesAction" 
-            text="Refresh Messages" 
+    <action id="DevPulse.RefreshMessages"
+            class="com.pichincha.devpulse.actions.RefreshMessagesAction"
+            text="Refresh Messages"
             description="Refresh messages from server"
             icon="AllIcons.Actions.Refresh">
       <add-to-group group-id="ToolbarRunGroup" anchor="last"/>

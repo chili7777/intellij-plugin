@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
     storages = @Storage("devpulse.xml")
 )
 public class DevPulseSettings implements PersistentStateComponent<DevPulseSettings> {
-  public String apiUrl = "https://devpulse-api.pichincha.com";
+  public String apiUrl = "http://localhost:8080";
   public String userEmail = "";
   public boolean enableNotifications = true;
   public boolean enableTelemetry = true;
